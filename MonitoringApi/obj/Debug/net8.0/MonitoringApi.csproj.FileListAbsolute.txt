@@ -44,3 +44,4 @@ C:\Users\ACER\Documents\Trabajos Yudi\Programacion USergioArboleda\MonitoringApi
 C:\Users\ACER\Documents\Trabajos Yudi\Programacion USergioArboleda\MonitoringApi\monitoringapi\obj\Debug\net8.0\MonitoringApi.pdb
 C:\Users\ACER\Documents\Trabajos Yudi\Programacion USergioArboleda\MonitoringApi\monitoringapi\obj\Debug\net8.0\MonitoringApi.genruntimeconfig.cache
 C:\Users\ACER\Documents\Trabajos Yudi\Programacion USergioArboleda\MonitoringApi\monitoringapi\obj\Debug\net8.0\ref\MonitoringApi.dll
+C:\Users\ACER\Documents\Trabajos Yudi\Programacion USergioArboleda\MonitoringApi\monitoringapi\obj\Debug\net8.0\MonitoringApi.sourcelink.json

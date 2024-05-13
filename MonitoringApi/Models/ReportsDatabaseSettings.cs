@@ -2,6 +2,7 @@
  using System.Collections.Generic;
  using System.Linq;
  using System.Threading.Tasks;
+ using MonitoringApi.Services;
  
 namespace MonitoringApi.Models{
     public class ReportsDatabaseSettings

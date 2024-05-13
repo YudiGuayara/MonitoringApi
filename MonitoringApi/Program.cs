@@ -1,13 +1,13 @@
 using MonitoringApi.Models;
 using MonitoringApi.Services;
- 
+using MonitoringApi.Controllers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<ReportsDatabaseSettings>(
     builder.Configuration.GetSection("ReportsDatabaseSettings"));
-
 
 builder.Services.AddSingleton<ReportsService>();
 
@@ -30,6 +30,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Middleware de enrutamiento para controladores
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+
 // Llamando al método PrintConnectionStatus para verificar la conexión
 using var serviceScope = app.Services.CreateScope();
 var serviceProvider = serviceScope.ServiceProvider;
@@ -43,7 +48,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
