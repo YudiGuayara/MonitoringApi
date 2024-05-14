@@ -1,27 +1,28 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MonitoringApi.Models;
 using MonitoringApi.Services;
-using MonitoringApi.Controllers;
-
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configurar MongoDB
 builder.Services.Configure<ReportsDatabaseSettings>(
     builder.Configuration.GetSection("ReportsDatabaseSettings"));
-
-builder.Services.AddSingleton<ReportsService>();
+builder.Services.AddSingleton<IMongoClient, MongoClient>(s =>
+    new MongoClient(builder.Configuration.GetSection("ReportsDatabaseSettings:ConnectionString").Value));
+builder.Services.AddSingleton<ReportsServices>();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(
-        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+    .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de solicitudes HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -30,40 +31,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Middleware de enrutamiento para controladores
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.UseAuthorization();
 
-// Llamando al método PrintConnectionStatus para verificar la conexión
-using var serviceScope = app.Services.CreateScope();
-var serviceProvider = serviceScope.ServiceProvider;
-var reportsService = serviceProvider.GetRequiredService<ReportsService>();
-reportsService.PrintConnectionStatus();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

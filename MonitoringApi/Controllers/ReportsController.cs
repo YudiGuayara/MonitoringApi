@@ -1,99 +1,100 @@
 using Microsoft.AspNetCore.Mvc;
 using MonitoringApi.Models;
 using MonitoringApi.Services;
-using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MonitoringApi.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class ReportsController : ControllerBase
+    [ApiController]
+    public class ReportController : ControllerBase
     {
-        private readonly ReportsService _reportsService;
+        private readonly ReportsServices _reportService;
 
-        public ReportsController(ReportsService reportsService)
+        public ReportController(ReportsServices reportService)
         {
-            _reportsService = reportsService;
+            _reportService = reportService;
         }
 
+        // GET: api/report
         [HttpGet]
-        public async Task<List<Report>> GetAllReports()
+        public async Task<ActionResult<IEnumerable<Report>>> GetReports()
         {
-            var reports = await _reportsService.GetAllReportsAsync();
-            return reports;
+            var reports = await _reportService.GetReportsAsync();
+            return Ok(reports);
         }
 
-        [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Report>> GetReportById(string id)
+        // GET: api/report/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Report>> GetReport(string id)
         {
-            if (!ObjectId.TryParse(id, out ObjectId objectId))
-            {
-                return BadRequest("Invalid ID format.");
-            }
-
-            var report = await _reportsService.GetReportByIdAsync(objectId);
+            var report = await _reportService.GetReportByIdAsync(id);
             if (report == null)
             {
                 return NotFound();
             }
-            return report;
+            return Ok(report);
         }
 
+        // POST: api/report
         [HttpPost]
-        public async Task<IActionResult> Post(Report newReport)
+        public async Task<ActionResult<Report>> PostReport([FromBody] Report report)
         {
-            // No es necesario definir el Id aquí
-            // MongoDB generará automáticamente un ObjectId para este campo
-            await _reportsService.CreateReportAsync(newReport);
-            
-            // Retorna la respuesta con el nuevo reporte creado
-            return CreatedAtAction(nameof(GetReportById), new { id = newReport.Id }, newReport);
+            try
+            {
+                await _reportService.CreateReportAsync(report);
+                return CreatedAtAction(nameof(GetReport), new { id = report.Id }, report);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-
-
-        [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> UpdateReport(string id, Report updatedReport)
+        // PUT: api/report/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateReport(string id, [FromBody] Report updatedReport)
         {
-            // Verificar si el id es válido
-            if (!ObjectId.TryParse(id, out ObjectId objectId))
+            if (updatedReport == null || updatedReport.Id != id)
             {
-                return BadRequest("Invalid ID format.");
+                return BadRequest("Invalid report data");
             }
 
-            // Obtener el reporte existente por su id
-            var existingReport = await _reportsService.GetReportByIdAsync(objectId);
-            if (existingReport == null)
+            try
             {
-                return NotFound("Report not found.");
+                var result = await _reportService.UpdateReportAsync(id, updatedReport);
+                if (!result)
+                {
+                    return NotFound();
+                }
+                return Ok(new { Message = "Report updated successfully" });
             }
-
-            // Actualizar solo los campos necesarios del reporte existente
-            existingReport.Date = updatedReport.Date;
-            existingReport.Observation = updatedReport.Observation;
-            existingReport.UserId = updatedReport.UserId;
-            existingReport.MeasurementId = updatedReport.MeasurementId;
-            existingReport.AlertId = updatedReport.AlertId;
-
-            // Actualizar el reporte existente en la base de datos
-            await _reportsService.UpdateReportAsync(objectId, existingReport);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-
-        [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> RemoveReport(string id)
+        // DELETE: api/report/{id}
+        // DELETE: api/report/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReport(string id)
         {
-            if (!ObjectId.TryParse(id, out ObjectId objectId))
+            try
             {
-                return BadRequest("Invalid ID format.");
+                var result = await _reportService.DeleteReportAsync(id);
+                if (!result)
+                {
+                    return NotFound(new { Message = "Report not found" });
+                }
+                return Ok(new { Message = "Report deleted successfully" }); // Devuelve 200 OK con un mensaje
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
-            await _reportsService.RemoveReportAsync(objectId);
-            return NoContent();
-}
     }
 }

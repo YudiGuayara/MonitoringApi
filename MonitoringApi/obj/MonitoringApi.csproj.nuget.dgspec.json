@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\MonitoringApi.csproj": {}
+    "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\MonitoringApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\MonitoringApi.csproj": {
+    "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\MonitoringApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\MonitoringApi.csproj",
+        "projectUniqueName": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\MonitoringApi.csproj",
         "projectName": "MonitoringApi",
-        "projectPath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\MonitoringApi.csproj",
+        "projectPath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\MonitoringApi.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\obj\\",
+        "outputPath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",

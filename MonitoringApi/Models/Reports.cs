@@ -6,10 +6,9 @@ namespace MonitoringApi.Models
 {
     public class Report
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]  
         [BsonElement("_id")]
-        public ObjectId Id { get; set; } // Utiliza ObjectId para representar el _id en MongoDB
+        public string? Id { get; set; } // Utiliza ObjectId para representar el _id en MongoDB
 
         [BsonElement("date")]
         public DateTime Date { get; set; }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Iob8CIpcu08Dszyj/Ji7oNLWJLuYgemleyW2PlKC/78cIa2QxPtEbc5u25SsUO5bNQkn4yVh96Hme+aLgb+6wA==",
+  "dgSpecHash": "UzcwraYOOhjjr+1BSPajzGU7ygycCiv9CcGqoAJQj0bnyZAm248or2MLO1XEoGjk2qwjCIQ8i2BFvZYlc+BiFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\MonitoringApi\\MonitoringApi.csproj",
+  "projectFilePath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\monitoringapi\\MonitoringApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
