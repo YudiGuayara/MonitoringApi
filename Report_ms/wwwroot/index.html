@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Informes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Informes</h1>
+        
+        <!-- Formulario para crear o actualizar informes -->
+        <div id="form-section">
+            <h2>Crear/Actualizar Informe</h2>
+            <form id="report-form">
+                <input type="hidden" id="report-id" name="id">
+                <label for="date">Fecha:</label>
+                <input type="datetime-local" id="date" name="date" required>
+                
+                <label for="observation">Observación:</label>
+                <textarea id="observation" name="observation" required></textarea>
+                
+                <label for="userId">ID de Usuario:</label>
+                <input type="text" id="userId" name="userId" required>
+                
+                <label for="measurementId">ID de Medición:</label>
+                <input type="text" id="measurementId" name="measurementId" required>
+                
+                <label for="alertId">ID de Alerta:</label>
+                <input type="text" id="alertId" name="alertId" required>
+                
+                <button type="submit" id="submit-button">Guardar</button>
+            </form>
+        </div>
+
+        <!-- Lista de informes existentes -->
+        <div id="reports-section">
+            <h2>Lista de Informes</h2>
+            <div id="new-reports"></div> <!-- Contenedor para nuevos informes -->
+            <ul id="reports-list">
+                <!-- Aquí se llenarán los informes existentes -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
+

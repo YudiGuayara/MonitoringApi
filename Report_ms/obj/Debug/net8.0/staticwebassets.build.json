@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "yz0bhVjDCVEF6/i/p7I4Q48ZM2BHFa3VC2do1C54V9Y=",
+  "Source": "MonitoringApi",
+  "BasePath": "_content/MonitoringApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MonitoringApi\\wwwroot",
+      "Source": "MonitoringApi",
+      "ContentRoot": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\",
+      "BasePath": "_content/MonitoringApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\css\\styles.css",
+      "SourceId": "MonitoringApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\",
+      "BasePath": "_content/MonitoringApi",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\index.html",
+      "SourceId": "MonitoringApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\",
+      "BasePath": "_content/MonitoringApi",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\js\\scripts.js",
+      "SourceId": "MonitoringApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\wwwroot\\",
+      "BasePath": "_content/MonitoringApi",
+      "RelativePath": "js/scripts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\scripts.js"
+    }
+  ]
+}
