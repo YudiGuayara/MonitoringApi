@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bWBwGpm/bqXUs9mZNXszqenjjSPBD3GWe+EO49SaIlnwtzOj6NIH0asXGKYVbDdgCVJmYgftG66faiFY4YNkrA==",
+  "dgSpecHash": "JkgmGj8CzAE6U49ETdXfSFNWGkBorCz7g4X+NV4mt0IbvTM4WGEY93Y4QEDdNXcGY5ywihWvTx6li4NuPFpOVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ACER\\Documents\\Trabajos Yudi\\Programacion USergioArboleda\\MonitoringApi\\Report_ms\\MonitoringApi.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,7 @@
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\ACER\\.nuget\\packages\\mongodb.bson\\2.25.0\\mongodb.bson.2.25.0.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\mongodb.bson\\2.26.0\\mongodb.bson.2.26.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\mongodb.driver\\2.25.0\\mongodb.driver.2.25.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\mongodb.driver.core\\2.25.0\\mongodb.driver.core.2.25.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\mongodb.libmongocrypt\\1.8.2\\mongodb.libmongocrypt.1.8.2.nupkg.sha512",

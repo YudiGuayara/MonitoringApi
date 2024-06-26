@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MonitoringApi.Models;
 using MonitoringApi.Services;
+using MongoDB.Bson; // Importar espacio de nombres para ObjectId
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,11 +30,8 @@ namespace MonitoringApi.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error al obtener informes: {ex.Message}");
-
-                // Return an error response with status code 500 (Internal Server Error)
-                return StatusCode(500, $"Error al obtener informes. Por favor, inténtalo de nuevo.");
+                return StatusCode(500, "Error al obtener informes. Por favor, inténtalo de nuevo.");
             }
         }
 
@@ -52,11 +50,8 @@ namespace MonitoringApi.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error al obtener el informe con ID {id}: {ex.Message}");
-
-                // Return an error response with status code 500 (Internal Server Error)
-                return StatusCode(500, $"Error al obtener el informe. Por favor, inténtalo de nuevo.");
+                return StatusCode(500, "Error al obtener el informe. Por favor, inténtalo de nuevo.");
             }
         }
 
@@ -66,18 +61,23 @@ namespace MonitoringApi.Controllers
         {
             try
             {
+                if (report == null)
+                {
+                    return BadRequest("Report data is null.");
+                }
+
+                report.Id = ObjectId.GenerateNewId().ToString();
+
                 await _reportService.CreateReportAsync(report);
                 return CreatedAtAction(nameof(GetReport), new { id = report.Id }, report);
             }
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error al crear informe: {ex.Message}");
-
-                // Return an error response with status code 500 (Internal Server Error)
-                return StatusCode(500, $"Error al crear informe. Por favor, inténtalo de nuevo.");
+                return StatusCode(500, "Error al crear informe. Por favor, inténtalo de nuevo.");
             }
         }
+
 
         // PUT: api/report/{id}
         [HttpPut("{id}")]
@@ -99,20 +99,17 @@ namespace MonitoringApi.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error al actualizar el informe con ID {id}: {ex.Message}");
-
-                // Return an error response with status code 500 (Internal Server Error)
-                return StatusCode(500, $"Error al actualizar el informe. Por favor, inténtalo de nuevo.");
+                return StatusCode(500, "Error al actualizar el informe. Por favor, inténtalo de nuevo.");
             }
         }
 
         // DELETE: api/report/{id}
-        // DELETE: api/report/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReport(string id)
         {
-            try {
+            try
+            {
                 var result = await _reportService.DeleteReportAsync(id);
                 if (!result)
                 {
@@ -122,13 +119,9 @@ namespace MonitoringApi.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error al eliminar el informe con ID {id}: {ex.Message}");
-
-                // Return an error response with status code 500 (Internal Server Error)
-                return StatusCode(500, $"Error al eliminar el informe. Por favor, inténtalo de nuevo.");
+                return StatusCode(500, "Error al eliminar el informe. Por favor, inténtalo de nuevo.");
             }
         }
-
     }
 }

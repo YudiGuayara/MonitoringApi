@@ -24,10 +24,5 @@ namespace MonitoringApi.Models
 
         [BsonElement("alertId")]
         public string AlertId { get; set; }
-
-        public Report()
-        {
-            Id = ObjectId.GenerateNewId().ToString(); // Genera un ObjectId nuevo al crear el objeto
-        }
     }
 }

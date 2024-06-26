@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const form = document.getElementById('report-form');
+    const searchForm = document.getElementById('search-form');
     const reportsList = document.getElementById('reports-list');
-    const newReportsContainer = document.getElementById('new-reports');
+    const searchResult = document.getElementById('search-result');
 
     // Función para cargar los informes al cargar la página
     async function loadReports() {
@@ -25,14 +26,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     function renderReport(report) {
         const li = document.createElement('li');
         li.innerHTML = `
-            <strong>ID:</strong> ${report.id}<br>
+            <strong>ID:</strong> ${report._id}<br>
             <strong>Fecha:</strong> ${new Date(report.date).toLocaleString()}<br>
             <strong>Observación:</strong> ${report.observation}<br>
             <strong>ID de Usuario:</strong> ${report.userId}<br>
             <strong>ID de Medición:</strong> ${report.measurementId}<br>
             <strong>ID de Alerta:</strong> ${report.alertId}<br>
-            <button onclick="editReport('${report.id}')">Editar</button>
-            <button onclick="deleteReport('${report.id}')">Eliminar</button>
+            <button class="edit" onclick="editReport('${report._id}')">Editar</button>
+            <button class="delete" onclick="deleteReport('${report._id}')">Eliminar</button>
             <hr>
         `;
         reportsList.appendChild(li);
@@ -45,15 +46,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         const formData = new FormData(form);
         const id = formData.get('id');
         const url = id ? `/api/report/${id}` : '/api/report';
+        const method = id ? 'PUT' : 'POST';
 
         try {
             const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
+                method: method,
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: formData.get('id'),
                     date: formData.get('date'),
                     observation: formData.get('observation'),
                     userId: formData.get('userId'),
@@ -69,12 +70,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             // Limpiar el formulario después de guardar
             form.reset();
 
-            // Obtener el nuevo informe creado y renderizarlo
-            const newReport = await response.json();
-            renderReport(newReport);
+            // Recargar la lista de informes
+            loadReports();
 
             // Mostrar mensaje de éxito
-            alert('Informe creado correctamente.');
+            alert('Informe guardado correctamente.');
 
         } catch (error) {
             console.error('Error al guardar el informe:', error);
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
-   // Función para editar un informe
+    // Función para editar un informe
     window.editReport = async function(id) {
         try {
             const response = await fetch(`/api/report/${id}`);
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const report = await response.json();
 
             // Rellenar el formulario con los datos del informe
-            document.getElementById('report-id').value = report.id;
+            document.getElementById('report-id').value = report._id;
             document.getElementById('date').value = new Date(report.date).toISOString().slice(0, 16); // Formato datetime-local
             document.getElementById('observation').value = report.observation;
             document.getElementById('userId').value = report.userId;
@@ -130,6 +130,35 @@ document.addEventListener('DOMContentLoaded', async function() {
             alert('Error al eliminar el informe. Inténtalo de nuevo más tarde.');
         }
     };
+
+    // Función para buscar un informe por ID
+    searchForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const searchId = document.getElementById('search-id').value;
+
+        try {
+            const response = await fetch(`/api/report/${searchId}`);
+            if (!response.ok) {
+                throw new Error('Informe no encontrado.');
+            }
+            const report = await response.json();
+            searchResult.innerHTML = `
+                <strong>ID:</strong> ${report._id}<br>
+                <strong>Fecha:</strong> ${new Date(report.date).toLocaleString()}<br>
+                <strong>Observación:</strong> ${report.observation}<br>
+                <strong>ID de Usuario:</strong> ${report.userId}<br>
+                <strong>ID de Medición:</strong> ${report.measurementId}<br>
+                <strong>ID de Alerta:</strong> ${report.alertId}<br>
+                <button onclick="editReport('${report._id}')">Editar</button>
+                <button onclick="deleteReport('${report._id}')">Eliminar</button>
+            `;
+
+        } catch (error) {
+            console.error('Error al buscar el informe:', error);
+            searchResult.innerHTML = 'Informe no encontrado.';
+        }
+    });
 
     // Llamar a loadReports al cargar la página inicialmente
     loadReports();

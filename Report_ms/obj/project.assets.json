@@ -135,7 +135,7 @@
           }
         }
       },
-      "MongoDB.Bson/2.25.0": {
+      "MongoDB.Bson/2.26.0": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.5",
@@ -813,10 +813,10 @@
         "version.txt"
       ]
     },
-    "MongoDB.Bson/2.25.0": {
-      "sha512": "xQx/qtC2nu9oGiyNqAwfiDpUMweLi0nID677cyKykpwmj5AVMrnd//UwmcmuX95178DeY6rf7cjmA613TQXPiA==",
+    "MongoDB.Bson/2.26.0": {
+      "sha512": "g4YPC3SHHB4oKqkQdRCh03E9Ex7g/WawFhU5ABtsfkYEjCRMZrEA2jH+bGB1DAlDQ+jweXOdh1S2KkVEaZ5lng==",
       "type": "package",
-      "path": "mongodb.bson/2.25.0",
+      "path": "mongodb.bson/2.26.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -827,7 +827,7 @@
         "lib/netstandard2.0/MongoDB.Bson.xml",
         "lib/netstandard2.1/MongoDB.Bson.dll",
         "lib/netstandard2.1/MongoDB.Bson.xml",
-        "mongodb.bson.2.25.0.nupkg.sha512",
+        "mongodb.bson.2.26.0.nupkg.sha512",
         "mongodb.bson.nuspec",
         "packageIcon.png"
       ]
@@ -1225,6 +1225,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.OpenApi >= 8.0.4",
+      "MongoDB.Bson >= 2.26.0",
       "MongoDB.Driver >= 2.25.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -1274,6 +1275,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.4, )"
+          },
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "[2.26.0, )"
           },
           "MongoDB.Driver": {
             "target": "Package",

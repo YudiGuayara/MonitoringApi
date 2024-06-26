@@ -4,7 +4,9 @@ using Microsoft.Extensions.Hosting;
 using MonitoringApi.Models;
 using MonitoringApi.Services;
 using MongoDB.Driver;
-using Microsoft.Extensions.Options; 
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,26 @@ app.UseStaticFiles(); // Servir archivos estáticos desde wwwroot
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Middleware de manejo de excepciones personalizado
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Response.ContentType = "application/json";
+
+        var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+        if (contextFeature != null)
+        {
+            await context.Response.WriteAsync(new
+            {
+                StatusCode = context.Response.StatusCode,
+                Message = "Internal Server Error. Please try again later."
+            }.ToString());
+        }
+    });
+});
 
 // Ruta para servir tu archivo HTML estático
 app.MapFallbackToFile("/index.html");

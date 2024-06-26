@@ -9,10 +9,21 @@
 <body>
     <div class="container">
         <h1>Gestión de Informes</h1>
-        
+
+        <!-- Sección de búsqueda de informes por ID -->
+        <div id="search-section">
+            <h2>Buscar Informe por ID</h2>
+            <form id="search-form">
+                <label for="search-id">ID de Informe:</label>
+                <input type="text" id="search-id" name="search-id" required>
+                <button type="submit">Buscar</button>
+            </form>
+            <div id="search-result"></div>
+        </div>
+
         <!-- Formulario para crear o actualizar informes -->
         <div id="form-section">
-            <h2>Crear/Actualizar Informe</h2>
+            <h2>Crear Informe</h2>
             <form id="report-form">
                 <input type="hidden" id="report-id" name="id">
                 <label for="date">Fecha:</label>
@@ -47,4 +58,3 @@
     <script src="js/scripts.js"></script>
 </body>
 </html>
-
